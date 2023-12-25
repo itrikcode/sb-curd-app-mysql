@@ -1,0 +1,16 @@
+name: show commit message
+on: [push]
+jobs:
+  shwo-commit-messages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: my commit message here
+        id: commit-message
+        run: |
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "::set-output name=commit_message::$COMMIT_MESSAGE"
+      - name: Display commit message here my
+        run: |
+          echo "Commit Message: ${{ steps.commit-message.outputs.commit_message }}"
