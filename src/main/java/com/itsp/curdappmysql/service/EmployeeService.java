@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,7 +87,29 @@ public class EmployeeService {
         }else {
            throw  new CustomException("Employee with ID " + id + " not found","Not Found ", HttpStatus.NOT_FOUND);
        }
+    }
 
+    public Long deleteEmployeeById(Long id){
+        Optional<Employee> optional = employeeRepo.findById(id);
+        if(optional.isPresent()){
+            if(optional.get().getEmpId().equals(id)){
+               employeeRepo.deleteById(optional.get().getEmpId());
+               return optional.get().getEmpId();
+            }else {
+                throw  new CustomException("Employee with ID " + id + " not found","Not Found ", HttpStatus.NOT_FOUND);
+            }
+        }else {
+            throw  new CustomException("Employee with ID " + id + " not found","Not Found ", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public List<Long> deleteAllEmployee(){
+        List<Long> deleteIds = new ArrayList<>();
+      employeeRepo.findAll().forEach(employee ->{
+          deleteIds.add(employee.getEmpId());
+       });
+       employeeRepo.deleteAll();
+       return deleteIds;
     }
 
 

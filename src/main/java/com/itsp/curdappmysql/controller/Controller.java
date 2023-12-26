@@ -40,4 +40,14 @@ public class Controller {
     public Employee updateEmpoyee(@PathVariable("id") Long id){
         return service.getById(id);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public Long deleteEmpoyeeById(@PathVariable("id") Long id){
+        return service.deleteEmployeeById(id);
+    }
+
+    @DeleteMapping("/delete")
+    public List<Long> deleteEmpoyeeById(){
+        return service.deleteAllEmployee();
+    }
 }
