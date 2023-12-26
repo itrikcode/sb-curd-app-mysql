@@ -1,6 +1,6 @@
 package com.itsp.curdappmysql.controller;
 
-import com.itsp.curdappmysql.bean.EmployeeLogin;
+import com.itsp.curdappmysql.bean.EmployeeRequest;
 import com.itsp.curdappmysql.bean.Login;
 import com.itsp.curdappmysql.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,12 @@ public class Controller {
     }
 
     @PostMapping("/registre")
-    public String registryEmployee(@RequestBody EmployeeLogin employeeLogin){
+    public String registryEmployee(@RequestBody EmployeeRequest employeeLogin){
         return service.registryValidUser(employeeLogin);
+    }
+
+    @PutMapping("/update")
+    public String updateEmpoyee(@RequestBody EmployeeRequest employeeRequest){
+        return service.updateEmployee(employeeRequest);
     }
 }

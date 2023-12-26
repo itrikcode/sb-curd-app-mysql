@@ -1,9 +1,7 @@
 package com.itsp.curdappmysql.bean;
 
-import jakarta.persistence.*;
 
-
-public class EmployeeLogin {
+public class EmployeeRequest {
     private Long id;
     private String username;
     private String password;
