@@ -6,6 +6,8 @@ import com.itsp.curdappmysql.bean.Login;
 import com.itsp.curdappmysql.service.EmployeeService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,32 +24,34 @@ public class Controller {
     }
 
     @PostMapping("/registre")
-    public String registryEmployee(@RequestBody EmployeeRequest employeeLogin){
-        return service.registryValidUser(employeeLogin);
+    public ResponseEntity<String> registryEmployee(@RequestBody EmployeeRequest employeeLogin){
+        String message = service.registryValidUser(employeeLogin);
+        return new ResponseEntity<>(message, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public String updateEmpoyee(@RequestBody EmployeeRequest employeeRequest){
-        return service.updateEmployee(employeeRequest);
+    public ResponseEntity<String> updateEmpoyee(@RequestBody EmployeeRequest employeeRequest){
+        return new ResponseEntity<>(service.updateEmployee(employeeRequest),HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/getall")
-    public List<Employee> updateEmpoyee(){
-        return service.getAll();
+    public ResponseEntity<List<Employee>> updateEmpoyee(){
+        return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
-    public Employee updateEmpoyee(@PathVariable("id") Long id){
-        return service.getById(id);
+    public ResponseEntity<Employee> updateEmpoyee(@PathVariable("id") Long id){
+        return new ResponseEntity<>(service.getById(id),HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public Long deleteEmpoyeeById(@PathVariable("id") Long id){
-        return service.deleteEmployeeById(id);
+    public ResponseEntity<Long> deleteEmpoyeeById(@PathVariable("id") Long id){
+        return new ResponseEntity<>(service.deleteEmployeeById(id),HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/delete")
-    public List<Long> deleteEmpoyeeById(){
-        return service.deleteAllEmployee();
+    public ResponseEntity<List<Long>> deleteEmpoyeeById(){
+        List<Long> deletedEmployeeIds =  service.deleteAllEmployee();
+        return new ResponseEntity<>(deletedEmployeeIds,HttpStatus.OK);
     }
 }
