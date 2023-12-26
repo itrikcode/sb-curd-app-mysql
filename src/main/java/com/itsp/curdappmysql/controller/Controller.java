@@ -1,10 +1,13 @@
 package com.itsp.curdappmysql.controller;
 
+import com.itsp.curdappmysql.bean.Employee;
 import com.itsp.curdappmysql.bean.EmployeeRequest;
 import com.itsp.curdappmysql.bean.Login;
 import com.itsp.curdappmysql.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -25,5 +28,10 @@ public class Controller {
     @PutMapping("/update")
     public String updateEmpoyee(@RequestBody EmployeeRequest employeeRequest){
         return service.updateEmployee(employeeRequest);
+    }
+
+    @GetMapping("/getall")
+    public List<Employee> updateEmpoyee(){
+        return service.getAll();
     }
 }

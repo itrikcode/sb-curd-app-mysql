@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 public class EmployeeService {
 
@@ -62,6 +64,10 @@ public class EmployeeService {
       }else {
           return "Invalid username or password.";
       }
+    }
+
+    public List<Employee> getAll(){
+      return   employeeRepo.findAll().stream().toList();
     }
 
 
