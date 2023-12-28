@@ -54,4 +54,22 @@ public class Controller {
         List<Long> deletedEmployeeIds =  service.deleteAllEmployee();
         return new ResponseEntity<>(deletedEmployeeIds,HttpStatus.OK);
     }
+    
+    @GetMapping("/getlogin/{id}")
+    public ResponseEntity<Login> getLoginById(@PathVariable Long id){
+        return new ResponseEntity<>(service.getLoginEmployeeById(id),HttpStatus.OK);
+    }
+    @GetMapping("/getlogin")
+    public ResponseEntity<List<Login>> getAllLogin(){
+        return new ResponseEntity<>(service.getAllLoginEmployee(),HttpStatus.OK);
+    }
+    @DeleteMapping("/deletelogin/{id}")
+    public ResponseEntity<Long> deleteLoginEmployee(@PathVariable Long id){
+        return new ResponseEntity<>(service.deleteLoginEmployee(id),HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/deleteall")
+    public ResponseEntity<List<Long>> deleteAllLoginEmployee(){
+        return new ResponseEntity<>(service.deleteAllLoginEmployee(),HttpStatus.OK);
+    }
 }

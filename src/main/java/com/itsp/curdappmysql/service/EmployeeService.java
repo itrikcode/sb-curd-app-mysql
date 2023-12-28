@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -112,5 +113,52 @@ public class EmployeeService {
        return deleteIds;
     }
 
+    public Login getLoginEmployeeById(Long id) {
+       Optional<Login> login = employeeLoginRepo.findById(id);
+       if(login.isPresent()){
+           if(login.get().getId().equals(id)){
+               return login.get();
+           } else {
+               throw  new CustomException("Login with ID " + id + " not found","Not Found ", HttpStatus.NOT_FOUND);
+           }
+       }else {
+           throw  new CustomException("Login with ID " + id + " not found","Not Found ", HttpStatus.NOT_FOUND);
+       }
+    }
+    public List<Login> getAllLoginEmployee() {
+        List<Login> login = employeeLoginRepo.findAll().stream().toList();
+        if(!login.isEmpty()){
+                return login;
+            } else {
+                throw  new CustomException("No Registration exist","Login Data ", HttpStatus.NOT_FOUND);
+            }
+    }
 
+    public Long deleteLoginEmployee(@PathVariable Long id) {
+     Optional<Login> loginEmployee= employeeLoginRepo.findById(id);
+        if(loginEmployee.isPresent()){
+            if(loginEmployee.get().getId().equals(id)){
+                employeeLoginRepo.deleteById(id);
+                return loginEmployee.get().getId();
+            }else {
+                throw  new CustomException("Id Not exist",+id +" Login Data ", HttpStatus.NOT_FOUND);
+            }
+        } else {
+            throw  new CustomException("Id Not exist",+id +" Login Data ", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public List<Long> deleteAllLoginEmployee() {
+        List<Long> deleteIds = new ArrayList<>();
+        employeeLoginRepo.findAll().forEach(emp -> {
+            deleteIds.add(emp.getId());
+        });
+        if(!deleteIds.isEmpty()) {
+            employeeLoginRepo.deleteAll();
+        }else {
+            throw new CustomException("No Login exist ","Login Data",HttpStatus.NOT_FOUND);
+        }
+        return deleteIds;
+    }
 }
+
