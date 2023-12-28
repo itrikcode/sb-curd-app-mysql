@@ -18,7 +18,7 @@ public class Controller {
 
     @Autowired
     EmployeeService service;
-    @RequestMapping(value = "/login",method = RequestMethod.POST,consumes = "application/json")
+    @PostMapping("/login")
     public String login(@RequestBody Login login){
         return service.loginEmployee(login);
     }
