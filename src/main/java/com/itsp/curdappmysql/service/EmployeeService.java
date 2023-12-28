@@ -74,7 +74,12 @@ public class EmployeeService {
     }
 
     public List<Employee> getAll(){
-      return   employeeRepo.findAll().stream().toList();
+     List<Employee> empList =   employeeRepo.findAll().stream().toList();
+        if(!empList.isEmpty()){
+            return empList;
+        } else {
+            throw  new CustomException("No Employee exist","Employee Data ", HttpStatus.NOT_FOUND);
+        }
     }
 
     public Employee getById(Long id){
