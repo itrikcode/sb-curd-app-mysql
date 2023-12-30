@@ -192,39 +192,36 @@ public class EmployeeService {
         return result.toString();
     }
 
-//    public String batchCreateEmployee(List<EmployeeRequest> employeeRequests) {
-//        StringBuilder result = new StringBuilder();
-//
-//        if (employeeRequests != null && !employeeRequests.isEmpty()) {
-//            for (EmployeeRequest empData : employeeRequests) {
-//                String addharNo = empData.getEmployee().getEmpAddhar();
-//
-//                // Check if an employee with the same addharNo exists
-//                Employee existingEmployee = employeeRepo.findEmployeeByEmpAddhar(addharNo);
-//
-//                if (existingEmployee != null) {
-//                    // Employee with the same addharNo exists, update the existing record
-//                    existingEmployee.setEmpName(empData.getEmployee().getEmpName());
-//                    existingEmployee.setEmpAddress(empData.getEmployee().getEmpAddress());
-//                    existingEmployee.setEmpMobile(empData.getEmployee().getEmpMobile());
-//
-//                   // employeeRepo.save(existingEmployee);
-//
-//                    result.append("Employee with addharNo ").append(addharNo).append(" exited.\n");
-//                } else {
-//                    // No employee with the same addharNo exists, create a new record
-//                    Employee newEmployee = empData.getEmployee();
-//                    employeeRepo.save(newEmployee);
-//
-//                    result.append("Employee with addharNo ").append(addharNo).append(" created.\n");
-//                }
-//            }
-//        } else {
-//            result.append("No Data Provided");
-//        }
-//
-//        return result.toString();
-//    }
+    public ResponseEntity<String> usertMultipleEmployee(@RequestBody List<EmployeeRequest> employeeRequest){
+        StringBuilder result = new StringBuilder();
+        if(!employeeRequest.isEmpty()) {
+            for (EmployeeRequest emp : employeeRequest) {
+                Login login = employeeLoginRepo.findByUsername(emp.getUsername());
+                if (login != null && verifyUser(emp.getPassword(), login.getPassword())) {
+                    //  result.append("Loing success \n");
+                    String empAddharNo = emp.getEmployee().getEmpAddhar();
+                    Employee existingEmployee = employeeRepo.findEmployeeByEmpAddhar(empAddharNo);
+                    if (existingEmployee != null) {
+                        existingEmployee.setEmpName(emp.getEmployee().getEmpName());
+                        existingEmployee.setEmpAddress(emp.getEmployee().getEmpAddress());
+                        existingEmployee.setEmpMobile(emp.getEmployee().getEmpMobile());
+                        existingEmployee.setEmpAddhar(emp.getEmployee().getEmpAddhar());
+                        employeeRepo.save(existingEmployee);
+                        result.append("Login Success ").append("Employee with Addhar No ").append(empAddharNo).append(" Updated.\n");
+                    } else {
+                        Employee newEmployee = emp.getEmployee();
+                        employeeRepo.save(newEmployee);
+                        result.append("New Employee with Addhar No ").append(empAddharNo).append(" Created.\n");
+                    }
+                } else {
+                        result.append("Invalid Username ").append(emp.getUsername()).append(" and Password ").append(emp.getPassword()).append("\n");
+                }
+            }
+        }else {
+            result.append("Please Provied Proper Data \n");
+        }
+        return ResponseEntity.status(HttpStatus.MULTI_STATUS).body(result.toString());
+    }
 
 }
 
