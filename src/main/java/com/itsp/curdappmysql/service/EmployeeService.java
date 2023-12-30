@@ -165,5 +165,29 @@ public class EmployeeService {
         }
         return deleteIds;
     }
+
+    public String batchCreateEmployee(List<EmployeeRequest> employeeRequests) {
+        String result = "";
+        if (employeeRequests != null && !employeeRequests.isEmpty()) {
+            for (EmployeeRequest empData : employeeRequests) {
+                Login existingUser = employeeLoginRepo.findByUsername(empData.getUsername());
+                if (existingUser != null && verifyUser(empData.getPassword(), existingUser.getPassword())) {
+                    if (empData != null) {
+                        Employee employee1 = empData.getEmployee();
+                        if (employeeRepo.save(employee1) != null) {
+                            result= "Login successful! Employees data registered.";
+                        }else {
+                            result="Error saving employee data.";
+                        }
+                    }
+                } else {
+                    result="Invalid username or password.";
+                }
+            }
+        } else {
+            result="No Data Provided";
+        }
+        return result;
+    }
 }
 
