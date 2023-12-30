@@ -167,27 +167,64 @@ public class EmployeeService {
     }
 
     public String batchCreateEmployee(List<EmployeeRequest> employeeRequests) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         if (employeeRequests != null && !employeeRequests.isEmpty()) {
             for (EmployeeRequest empData : employeeRequests) {
                 Login existingUser = employeeLoginRepo.findByUsername(empData.getUsername());
-                if (existingUser != null && verifyUser(empData.getPassword(), existingUser.getPassword())) {
-                    if (empData != null) {
+                String addharNo = empData.getEmployee().getEmpAddhar();
+                Employee existingEmployee = employeeRepo.findEmployeeByEmpAddhar(addharNo);
+                if (existingEmployee != null) {
+                    result.append("Employee with Addhar No ").append(addharNo).append(" Exited.\n");
+                }else {
+                    if (existingUser != null && verifyUser(empData.getPassword(), existingUser.getPassword())) {
                         Employee employee1 = empData.getEmployee();
-                        if (employeeRepo.save(employee1) != null) {
-                            result= "Login successful! Employees data registered.";
-                        }else {
-                            result="Error saving employee data.";
-                        }
+                        employeeRepo.save(employee1);
+                        result.append("Login successful\n").append(" Employees with Addhar ").append(addharNo).append(" Created.\n");
+
+                    } else {
+                        result.append("Invalid username or password.");
                     }
-                } else {
-                    result="Invalid username or password.";
                 }
             }
         } else {
-            result="No Data Provided";
+            result.append("No Data Provided");
         }
-        return result;
+        return result.toString();
     }
+
+//    public String batchCreateEmployee(List<EmployeeRequest> employeeRequests) {
+//        StringBuilder result = new StringBuilder();
+//
+//        if (employeeRequests != null && !employeeRequests.isEmpty()) {
+//            for (EmployeeRequest empData : employeeRequests) {
+//                String addharNo = empData.getEmployee().getEmpAddhar();
+//
+//                // Check if an employee with the same addharNo exists
+//                Employee existingEmployee = employeeRepo.findEmployeeByEmpAddhar(addharNo);
+//
+//                if (existingEmployee != null) {
+//                    // Employee with the same addharNo exists, update the existing record
+//                    existingEmployee.setEmpName(empData.getEmployee().getEmpName());
+//                    existingEmployee.setEmpAddress(empData.getEmployee().getEmpAddress());
+//                    existingEmployee.setEmpMobile(empData.getEmployee().getEmpMobile());
+//
+//                   // employeeRepo.save(existingEmployee);
+//
+//                    result.append("Employee with addharNo ").append(addharNo).append(" exited.\n");
+//                } else {
+//                    // No employee with the same addharNo exists, create a new record
+//                    Employee newEmployee = empData.getEmployee();
+//                    employeeRepo.save(newEmployee);
+//
+//                    result.append("Employee with addharNo ").append(addharNo).append(" created.\n");
+//                }
+//            }
+//        } else {
+//            result.append("No Data Provided");
+//        }
+//
+//        return result.toString();
+//    }
+
 }
 
