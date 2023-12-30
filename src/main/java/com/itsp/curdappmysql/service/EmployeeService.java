@@ -223,5 +223,23 @@ public class EmployeeService {
         return ResponseEntity.status(HttpStatus.MULTI_STATUS).body(result.toString());
     }
 
+    public ResponseEntity<String> deleteMultipeEmployee(List<String> addharNumbers){
+        StringBuilder result = new StringBuilder();
+        if(!addharNumbers.isEmpty()){
+            for (String addhar : addharNumbers){
+             Employee empForDeletion =   employeeRepo.findEmployeeByEmpAddhar(addhar);
+             if(empForDeletion!=null) {
+                 employeeRepo.delete(empForDeletion);
+                 result.append("Employee with Addhar No ").append(addhar).append(" Deleted \n");
+             }else {
+                 result.append("Employee with Addhar No ").append(addhar).append(" Not Existed \n");
+             }
+            }
+        }else {
+            result.append("Provide Addhar No ");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(result.toString());
+    }
+
 }
 
