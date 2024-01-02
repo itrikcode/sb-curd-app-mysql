@@ -35,12 +35,12 @@ public class Controller {
     }
 
     @GetMapping("/getall")
-    public ResponseEntity<List<Employee>> updateEmpoyee(){
+    public ResponseEntity<List<Employee>> getEmpoyee(){
         return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Employee> updateEmpoyee(@PathVariable("id") Long id){
+    public ResponseEntity<Employee> getByEmpoyee(@PathVariable("id") Long id){
         return new ResponseEntity<>(service.getById(id),HttpStatus.OK);
     }
 
