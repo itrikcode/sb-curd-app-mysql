@@ -3,10 +3,8 @@ package com.itsp.curdappmysql.controller;
 import com.itsp.curdappmysql.bean.EmployeeRequest;
 import com.itsp.curdappmysql.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,4 +18,21 @@ public class BatchController {
     public String createBatchOpt(@RequestBody List<EmployeeRequest> employeeRequestList){
         return employeeService.batchCreateEmployee(employeeRequestList);
    }
+
+   @PostMapping("/upsert")
+    public ResponseEntity<String> upsertMultipleEmployee(@RequestBody List<EmployeeRequest> employeeRequestList){
+        return employeeService.usertMultipleEmployee(employeeRequestList);
+   }
+
+   @PostMapping("/all/delete")
+   public ResponseEntity<String> deleteBatchEmployeeByAddhar(@RequestBody List<String> addharNumbers){
+        return employeeService.deleteMultipeEmployee(addharNumbers);
+   }
+
+    @PostMapping("/update/multi")
+    public ResponseEntity<String> updateBatchEmployeeByAddhar(@RequestBody List<EmployeeRequest> employeeRequests){
+        return employeeService.updateMultipleEmployee(employeeRequests);
+    }
+
+
 }
