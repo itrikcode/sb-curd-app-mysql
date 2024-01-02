@@ -28,4 +28,11 @@ public class BatchController {
    public ResponseEntity<String> deleteBatchEmployeeByAddhar(@RequestBody List<String> addharNumbers){
         return employeeService.deleteMultipeEmployee(addharNumbers);
    }
+
+    @PostMapping("/update/multi")
+    public ResponseEntity<String> updateBatchEmployeeByAddhar(@RequestBody List<EmployeeRequest> employeeRequests){
+        return employeeService.updateMultipleEmployee(employeeRequests);
+    }
+
+
 }

@@ -241,5 +241,33 @@ public class EmployeeService {
         return ResponseEntity.status(HttpStatus.OK).body(result.toString());
     }
 
+    public ResponseEntity<String> updateMultipleEmployee(List<EmployeeRequest> employeeRequestList) {
+        StringBuilder result = new StringBuilder();
+        if (!employeeRequestList.isEmpty()) {
+            for (EmployeeRequest emp : employeeRequestList) {
+                Login login = employeeLoginRepo.findByUsername(emp.getUsername());
+                if (login != null && verifyUser(emp.getPassword(), login.getPassword())) {
+                    String addharNo = emp.getEmployee().getEmpAddhar();
+                    Employee existingEmployee = employeeRepo.findEmployeeByEmpAddhar(addharNo);
+                    if (existingEmployee != null) {
+                        existingEmployee.setEmpName(emp.getEmployee().getEmpName());
+                        existingEmployee.setEmpAddress(emp.getEmployee().getEmpAddress());
+                        existingEmployee.setEmpMobile(emp.getEmployee().getEmpMobile());
+                        existingEmployee.setEmpAddhar(emp.getEmployee().getEmpAddhar());
+                        employeeRepo.save(existingEmployee);
+                        result.append("Login Success ").append("Employee with Addhar No ").append(addharNo).append(" Updated.\n");
+                    } else {
+                        result.append("Login Success ").append("Employee with Addhar No ").append(addharNo).append(" Not Exited.\n");
+                    }
+                } else {
+                    result.append("Invalid Username ").append(emp.getUsername()).append(" and Password ").append(emp.getPassword()).append("\n");
+                }
+            }
+        } else {
+            result.append("Provide Valid Data");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(result.toString());
+    }
+
 }
 
