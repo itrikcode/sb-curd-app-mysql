@@ -4,8 +4,10 @@ import com.itsp.curdappmysql.bean.Employee;
 import com.itsp.curdappmysql.bean.EmployeeRequest;
 import com.itsp.curdappmysql.bean.Login;
 import com.itsp.curdappmysql.service.EmployeeService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -72,4 +74,17 @@ public class Controller {
     public ResponseEntity<List<Long>> deleteAllLoginEmployee(){
         return new ResponseEntity<>(service.deleteAllLoginEmployee(),HttpStatus.OK);
     }
+
+    @GetMapping("/query")
+    public ResponseEntity<List<Employee>> getQuery( HttpServletRequest request
+            //@RequestParam("id") Long id,
+//                                                    @RequestParam("empName") String empName,
+//                                                    @RequestParam("empAddress") String empAddress,
+//                                                    @RequestParam("empMobile") String empMobile,
+                                                 //   @RequestParam("empAddhar") String empAddhar
+    ){
+        return new ResponseEntity<>(service.query(request),HttpStatus.OK);
+    }
+
+
 }
