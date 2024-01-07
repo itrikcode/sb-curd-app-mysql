@@ -6,21 +6,25 @@ import com.itsp.curdappmysql.bean.Login;
 import com.itsp.curdappmysql.excepiton.CustomException;
 import com.itsp.curdappmysql.repository.EmployeeLoginRepo;
 import com.itsp.curdappmysql.repository.EmployeeRepo;
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EmployeeService {
 
+    private static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
     @Autowired
     EmployeeRepo employeeRepo;
 
@@ -267,6 +271,38 @@ public class EmployeeService {
             result.append("Provide Valid Data");
         }
         return ResponseEntity.status(HttpStatus.OK).body(result.toString());
+    }
+
+    public List<Employee> query( HttpServletRequest request ){
+    String empName = request.getParameter("empName");
+    String empAddress = request.getParameter("empAddress");
+    String empMobile = request.getParameter("empMobile");
+    String empAddhar = request.getParameter("empAddhar");
+ //  Long id = getLongParameter(request, "id"); // Assuming id is of type Long
+        Long id = null;
+        try {
+             id = Long.parseLong(request.getParameter("id"));
+        }catch (NumberFormatException nfe){
+           // nfe.printStackTrace();
+            logger.error(nfe.getLocalizedMessage());
+        }
+
+
+        return employeeRepo.findEmployeeByConditions(id,empName, empAddress, empMobile, empAddhar);
+
+}
+
+    private Long getLongParameter(HttpServletRequest request, String paramName) {
+        String paramValue = request.getParameter(paramName);
+        if (paramValue != null && !paramValue.isEmpty()) {
+            try {
+                return Long.parseLong(paramValue);
+            } catch (NumberFormatException e) {
+                // Handle the case where the parameter value cannot be parsed to Long
+                return null;
+            }
+        }
+        return null;
     }
 
 }

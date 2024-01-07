@@ -1,0 +1,65 @@
+2024-01-03T19:47:45.712+05:30  INFO 23544 --- [main] c.i.c.CurdAppMysqlApplicationTests       : Starting CurdAppMysqlApplicationTests using Java 21.0.1 with PID 23544 (started by Uni in D:\personal\my-apps\curd-app-mysql)
+2024-01-03T19:47:45.713+05:30  INFO 23544 --- [main] c.i.c.CurdAppMysqlApplicationTests       : The following 1 profile is active: "dev"
+2024-01-03T19:47:46.247+05:30  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-03T19:47:46.288+05:30  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 2 JPA repository interfaces.
+2024-01-03T19:47:46.590+05:30  INFO 23544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-03T19:47:46.852+05:30  INFO 23544 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a090f62
+2024-01-03T19:47:46.854+05:30  INFO 23544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-03T19:47:46.919+05:30  INFO 23544 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
+2024-01-03T19:47:46.919+05:30  INFO 23544 --- [main] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2024-01-03T19:47:46.919+05:30  INFO 23544 --- [main] o.f.c.internal.license.VersionPrinter    : 
+2024-01-03T19:47:46.933+05:30  INFO 23544 --- [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/curd-app (MySQL 8.0)
+2024-01-03T19:47:46.967+05:30  INFO 23544 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.021s)
+2024-01-03T19:47:46.990+05:30  INFO 23544 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `curd-app`: 2
+2024-01-03T19:47:46.993+05:30  INFO 23544 --- [main] o.f.core.internal.command.DbMigrate      : Schema `curd-app` is up to date. No migration necessary.
+2024-01-03T19:47:47.085+05:30  INFO 23544 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-03T19:47:47.151+05:30  INFO 23544 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-03T19:47:47.178+05:30  INFO 23544 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-03T19:47:47.385+05:30  INFO 23544 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-03T19:47:47.939+05:30  INFO 23544 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-03T19:47:47.966+05:30  INFO 23544 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-03T19:47:48.286+05:30  INFO 23544 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-01-03T19:47:48.713+05:30  WARN 23544 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-03T19:47:49.023+05:30  INFO 23544 --- [main] c.i.c.CurdAppMysqlApplicationTests       : Started CurdAppMysqlApplicationTests in 3.517 seconds (process running for 4.195)
+2024-01-03T19:47:49.453+05:30  INFO 23544 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-03T19:47:49.457+05:30  INFO 23544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-03T19:47:49.466+05:30  INFO 23544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-03T19:48:01.543+05:30  INFO 15956 --- [restartedMain] c.i.c.CurdAppMysqlApplication            : Starting CurdAppMysqlApplication using Java 21.0.1 with PID 15956 (D:\personal\my-apps\curd-app-mysql\target\classes started by Uni in D:\personal\my-apps\curd-app-mysql)
+2024-01-03T19:48:01.545+05:30  INFO 15956 --- [restartedMain] c.i.c.CurdAppMysqlApplication            : The following 1 profile is active: "dev"
+2024-01-03T19:48:01.597+05:30  INFO 15956 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-01-03T19:48:01.597+05:30  INFO 15956 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-01-03T19:48:02.061+05:30  INFO 15956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-03T19:48:02.122+05:30  INFO 15956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 2 JPA repository interfaces.
+2024-01-03T19:48:02.585+05:30  INFO 15956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-01-03T19:48:02.594+05:30  INFO 15956 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-03T19:48:02.595+05:30  INFO 15956 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-03T19:48:02.624+05:30  INFO 15956 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-03T19:48:02.625+05:30  INFO 15956 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1027 ms
+2024-01-03T19:48:02.698+05:30  INFO 15956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-03T19:48:02.932+05:30  INFO 15956 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5fb1323c
+2024-01-03T19:48:02.934+05:30  INFO 15956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-03T19:48:02.999+05:30  INFO 15956 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
+2024-01-03T19:48:02.999+05:30  INFO 15956 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2024-01-03T19:48:02.999+05:30  INFO 15956 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : 
+2024-01-03T19:48:03.010+05:30  INFO 15956 --- [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/curd-app (MySQL 8.0)
+2024-01-03T19:48:03.038+05:30  INFO 15956 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.015s)
+2024-01-03T19:48:03.052+05:30  INFO 15956 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `curd-app`: 2
+2024-01-03T19:48:03.056+05:30  INFO 15956 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `curd-app` is up to date. No migration necessary.
+2024-01-03T19:48:03.123+05:30  INFO 15956 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-03T19:48:03.160+05:30  INFO 15956 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-03T19:48:03.186+05:30  INFO 15956 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-03T19:48:03.333+05:30  INFO 15956 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-03T19:48:03.890+05:30  INFO 15956 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-03T19:48:03.915+05:30  INFO 15956 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-03T19:48:04.155+05:30  INFO 15956 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-01-03T19:48:04.549+05:30  WARN 15956 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-03T19:48:04.847+05:30  INFO 15956 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-03T19:48:04.869+05:30  INFO 15956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2024-01-03T19:48:04.876+05:30  INFO 15956 --- [restartedMain] c.i.c.CurdAppMysqlApplication            : Started CurdAppMysqlApplication in 3.61 seconds (process running for 3.953)
+2024-01-03T19:48:22.470+05:30  INFO 15956 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-03T19:48:22.470+05:30  INFO 15956 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-03T19:48:22.471+05:30  INFO 15956 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-01-03T19:48:22.496+05:30 ERROR 15956 --- [http-nio-8081-exec-1] c.i.c.service.EmployeeService            : Cannot parse null string
+2024-01-03T19:48:49.343+05:30  INFO 15956 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-03T19:48:49.346+05:30  INFO 15956 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-03T19:48:49.364+05:30  INFO 15956 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
